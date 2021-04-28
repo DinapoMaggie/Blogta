@@ -1,0 +1,27 @@
+<html>
+<head>
+	<title>Twit Twit</title>
+</head>
+<body style= "text-align:center; background-color:#465966;">
+	<h1 style= "text-shadow: -1px 1px 0 #fff,1px 1px 0 #fff,1px -1px 0 #fff,-1px -1px 0 #fff; color:1DA1F2; margin-top:20px; font-size: 50px">Spill the Twit!</h1>
+	<form method="POST">
+		<label for="name" style="color:white; margin-left: -50px";>Name:</label>
+		<input type='text' id="name" name="name" style="text-align:center; border-radius: 25px; margin-left: 10px"><br><br>
+		<label for="bio" style="color:white; margin-left: -50px";>Bio:</label>
+		<input type='text' id="bio" name="" style="text-align:center; border-radius: 25px; margin-left: 30px"><br><br>
+		<input type='text' id="Content" name="Content" style="text-align:center; height: 100px; width: 500px; border-radius: 10px;" placeholder="Write your content here."><br><br>
+		<input type='text' id="Codename" name="Cname" style="text-align:center; border-radius: 5px;" placeholder="Enter your codename."><br><br>
+		<input type='submit' id="btnPost" style="text-align:center; border-radius: 5px;" value="Spill !"/><br><br>
+		<input type='hidden'> 
+		{% csrf_token %}
+		<table id="ContentList" style="color:white; margin: 0 auto;">
+			{% for item in Content %}
+			<tr>
+				<td>{{ forloop.counter }}: {{ item.text }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+	</form>
+</body>
+</html>
