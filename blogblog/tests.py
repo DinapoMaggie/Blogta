@@ -30,7 +30,7 @@ class TweetTest(TestCase):
 	def test_redirectingPOST(self):
 		response = self.client.post('/', data = {'Content':'Content'})
 		self.assertEqual(response.status_code, 302)
-		self.assertEqual(response['location'], '/')
+		self.assertEqual(response['location'], '/blogblog/viewlist_url')
 			
 	def test_ididisplayyungitemsnitemplate(self):
 		Item.objects.create(text= 'item1')
@@ -56,5 +56,14 @@ class ORMTest(TestCase):
 		savedItem2=saved_Items[1]
 		self.assertEqual(savedItem1.text, 'one')
 		self.assertEqual(savedItem2.text, 'two')
+		
+class ViewTest(TestCase):
+
+	def test_displaysAll(self):
+		Item.objects.create(text= 'Danielle Teves')
+		Item.objects.create(text= 'Milleth Marupok')
+		response = self.client.get('/blogblog/viewlist_url')
+		self.assertContains(response,'Danielle Teves')
+		self.assertContains(response,'Milleth Marupok')
 
 # Create your tests here.

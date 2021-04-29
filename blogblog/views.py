@@ -14,6 +14,10 @@ from blogblog.models import Item
 def tweet(request):
 	if request.method =='POST':
 		Item.objects.create(text=request.POST['Content'])
-		return redirect('/')
+		return redirect('/blogblog/viewlist_url')
+	items = Item.objects.all()
+	return render (request, 'tweet.html', {'Content':items})
+	
+def ViewList(request):
 	items = Item.objects.all()
 	return render (request, 'tweet.html', {'Content':items})

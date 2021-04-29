@@ -1,7 +1,10 @@
 from django.conf.urls import url
 from blogblog import views
 
-urlpatterns = [ url(r'^$', views.tweet, name='tweet')]
+urlpatterns = [
+	url(r'^$', views.tweet, name='tweet'),
+	url(r'^blogblog/viewlist_url$', views.ViewList, name='viewlist')
+	]
 
 
 
