@@ -3,7 +3,8 @@ from blogblog import views
 
 urlpatterns = [
 	url(r'^$', views.tweet, name='tweet'),
-	url(r'^blogblog/viewlist_url$', views.ViewList, name='viewlist')
+	url(r'^blogblog/viewlist_url/$', views.ViewList, name='viewlist'),
+	url(r'^blogblog/newlist_url$', views.NewList, name='newlist'),
 	]
 
 

@@ -115,10 +115,10 @@ class TwitTest(LiveServerTestCase):
 		self.wait_rows_para_sa_list_ng_user('1: Ive been keeping all the letters that I wrote for you')
 		SeconndUrl = self.browser.current_url
 		self.assertRegex(SeconndUrl, '/blogblog/.+')
-		self.asserNotEqual(viewlist_url, SeconndUrl)
+		self.assertNotEqual(viewlist_url, SeconndUrl)
 		peaBody = self.browser.find_element_by_tag_name('body').text
 		self.assertNotIn('Ive been keeping all the letters that I wrote for you', peaBody)
-		self.assertIn('Another sunny day has come and gone away', peaBody)		
+		self.assertIn('2: Another sunny day has come and gone away', peaBody)		
 		
 		
 '''

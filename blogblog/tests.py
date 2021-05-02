@@ -14,7 +14,7 @@ class TweetTest(TestCase):
 		response = self.client.get('/')
 		self.assertTemplateUsed(response, 'tweet.html')
 		
-	def test_saveifneeded(self):
+'''	def test_saveifneeded(self):
 		response = self.client.get('/')
 		self.assertEqual(Item.objects.count(), 0)
 		
@@ -30,15 +30,15 @@ class TweetTest(TestCase):
 	def test_redirectingPOST(self):
 		response = self.client.post('/', data = {'Content':'Content'})
 		self.assertEqual(response.status_code, 302)
-		self.assertEqual(response['location'], '/blogblog/viewlist_url')
-			
+		self.assertEqual(response['location'], '/blogblog/viewlist_url/')
+
 	def test_ididisplayyungitemsnitemplate(self):
 		Item.objects.create(text= 'item1')
 		Item.objects.create(text= 'item2')
 		response = self.client.get('/')
 		self.assertIn('item1', response.content.decode())
 		self.assertIn('item2', response.content.decode())
-		
+'''		
 		
 
 class ORMTest(TestCase):
@@ -62,8 +62,27 @@ class ViewTest(TestCase):
 	def test_displaysAll(self):
 		Item.objects.create(text= 'Danielle Teves')
 		Item.objects.create(text= 'Milleth Marupok')
-		response = self.client.get('/blogblog/viewlist_url')
+		response = self.client.get('/blogblog/viewlist_url/')
 		self.assertContains(response,'Danielle Teves')
 		self.assertContains(response,'Milleth Marupok')
-
+		
+	def test_shareyourlist(self):
+		response = self.client.get('/blogblog/viewlist_url/')
+		self.assertTemplateUsed(response, 'tweet2.html')
+		
+class NewListTest(TestCase):
+	def test_savepostrequest(self):
+		response = self.client.post('/blogblog/newlist_url', data = {'Content':'Content'})
+		#self.assertIn('Content', response.content.decode())
+		#self.assertTemplateUsed(response, 'tweet.html')
+		
+		self.assertEqual(Item.objects.count(), 1)
+		newItem = Item.objects.first()
+		self.assertEqual(newItem.text, 'Content')
+		
+	def test_redirectingPOST(self):
+		response = self.client.post('/blogblog/newlist_url', data = {'Content':'Content'})
+		self.assertRedirects(response, '/blogblog/viewlist_url/')
+#		self.assertEqual(response.status_code, 302)
+#		self.assertEqual(response['location'], '/blogblog/viewlist_url/')
 # Create your tests here.
