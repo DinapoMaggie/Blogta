@@ -47,16 +47,26 @@ class TwitTest(LiveServerTestCase):
 		time.sleep(.1)
 		bio.send_keys('Coz im only human')
 		time.sleep(.1)
+		
+		inputFeel= self.browser.find_element_by_id('Feeling')
+		inputFeel.send_keys('Happy')
+		time.sleep(.1)
+		
 		inputContent.send_keys('I went to park and met my old friends.')
 		time.sleep(.1)
 		inputCode= self.browser.find_element_by_id('Codename')
 		self.assertEqual(inputCode.get_attribute('placeholder'),'Enter your codename.')
 		inputCode.send_keys('Mashiiro Ame')
 		time.sleep(.1)
+		
+		inputdesc= self.browser.find_element_by_id('Description')
+		inputdesc.send_keys('#BFFs')
+		time.sleep(.1)
+		
 		LogIn = self.browser.find_element_by_id('btnPost')
 		LogIn.click()
 		time.sleep(.1)
-		self.wait_rows_para_sa_list_ng_user('1: I went to park and met my old friends.')
+		self.wait_rows_para_sa_list_ng_user('1: I went to park and met my old friends. Happy Mashiiro Ame #BFFs')
 		
 #second input to ni 1st user ahh
 		
@@ -64,14 +74,20 @@ class TwitTest(LiveServerTestCase):
 		self.assertEqual(inputContent.get_attribute('placeholder'),'Write your content here.')
 		inputContent.send_keys('I tried to cook but i burned the sunny side up egg')
 		time.sleep(.1)
+		inputFeel= self.browser.find_element_by_id('Feeling')
+		inputFeel.send_keys('Greatful')
+		time.sleep(.1)
 		inputCode= self.browser.find_element_by_id('Codename')
 		self.assertEqual(inputCode.get_attribute('placeholder'),'Enter your codename.')
 		inputCode.send_keys('Mashiiro Ame')
 		time.sleep(.1)
+		inputdesc= self.browser.find_element_by_id('Description')
+		inputdesc.send_keys('#BurnedEgg')
+		time.sleep(.1)
 		LogIn = self.browser.find_element_by_id('btnPost')
 		LogIn.click()
 		time.sleep(.1)
-		self.wait_rows_para_sa_list_ng_user('2: I tried to cook but i burned the sunny side up egg')
+		self.wait_rows_para_sa_list_ng_user('2: I tried to cook but i burned the sunny side up egg Greatful Mashiiro Ame #BurnedEgg')
 		
 	def test_ibaibangURLkadauser(self):
 		self.browser.get(self.live_server_url)
@@ -84,14 +100,20 @@ class TwitTest(LiveServerTestCase):
 		self.assertEqual(inputContent.get_attribute('placeholder'),'Write your content here.')
 		inputContent.send_keys('Ive been keeping all the letters that I wrote for you.')
 		time.sleep(.1)
+		inputFeel= self.browser.find_element_by_id('Feeling')
+		inputFeel.send_keys('Doubtful')
+		time.sleep(.1)
 		inputCode= self.browser.find_element_by_id('Codename')
 		self.assertEqual(inputCode.get_attribute('placeholder'),'Enter your codename.')
 		inputCode.send_keys('ScarletHeart')
 		time.sleep(.1)
+		inputdesc= self.browser.find_element_by_id('Description')
+		inputdesc.send_keys('#letters')
+		time.sleep(.1)
 		LogIn = self.browser.find_element_by_id('btnPost')
 		LogIn.click()
 		time.sleep(.1)
-		self.wait_rows_para_sa_list_ng_user('1: Ive been keeping all the letters that I wrote for you.')
+		self.wait_rows_para_sa_list_ng_user('1: Ive been keeping all the letters that I wrote for you. Doubtful ScarletHeart #letters')
 		viewlist_url = self.browser.current_url
 		self.assertRegex(viewlist_url, '/blogblog/.+')
 		
@@ -105,60 +127,23 @@ class TwitTest(LiveServerTestCase):
 		self.assertEqual(inputContent.get_attribute('placeholder'),'Write your content here.')
 		inputContent.send_keys('Another sunny day has come and gone away')
 		time.sleep(.1)
+		inputFeel= self.browser.find_element_by_id('Feeling')
+		inputFeel.send_keys('Regretful')
+		time.sleep(.1)
 		inputCode= self.browser.find_element_by_id('Codename')
 		self.assertEqual(inputCode.get_attribute('placeholder'),'Enter your codename.')
 		inputCode.send_keys('ScarletHeart')
 		time.sleep(.1)
+		inputdesc= self.browser.find_element_by_id('Description')
+		inputdesc.send_keys('#passingby')
+		time.sleep(.1)
 		LogIn = self.browser.find_element_by_id('btnPost')
 		LogIn.click()
 		time.sleep(.1)
-		self.wait_rows_para_sa_list_ng_user('1: Ive been keeping all the letters that I wrote for you')
-		SeconndUrl = self.browser.current_url
-		self.assertRegex(SeconndUrl, '/blogblog/.+')
-		self.assertNotEqual(viewlist_url, SeconndUrl)
+		self.wait_rows_para_sa_list_ng_user('1: Another sunny day has come and gone away Regretful ScarletHeart #passingby')
+		new_url = self.browser.current_url
+		self.assertRegex(new_url , '/blogblog/.+')
+		self.assertNotEqual(viewlist_url, new_url )
 		peaBody = self.browser.find_element_by_tag_name('body').text
-		self.assertNotIn('Ive been keeping all the letters that I wrote for you', peaBody)
-		self.assertIn('2: Another sunny day has come and gone away', peaBody)		
-		
-		
-'''
-
-		table = self.browser.find_element_by_id('ContentList')
-		rows = table.find_elements_by_tag_name('tr')
-		self.assertIn('1: I went to park and met my old friends. from Mashiiro Ame', [row.text for row in rows])
-	
-		#unang user
-		inputUser = self.browser.find_element_by_id('NewContent')
-		inputUser.click()
-		time.sleep(1)
-		inputContent.send_keys('I went to park and met my old friends.')
-		inputPword= self.browser.find_element_by_id('Codename')
-		inputPword.click()
-		time.sleep(1)
-		inputCode.send_keys('Mashiiro Ame')
-		LogIn = self.browser.find_element_by_id('btnPost')
-		LogIn.click()
-		time.sleep(1)
-		self.check_rows_para_sa_list_ng_user('1: I went to park and met my old friends.)# for Password1234')
-	
-		#second user
-		inputUser = self.browser.find_element_by_id('NewContent')
-		inputUser.click()
-		time.sleep(1)
-		inputUser.send_keys('Today, we got a lot of customer. Exhausted.')
-		inputPword= self.browser.find_element_by_id('Codename')
-		inputPword.click()
-		time.sleep(1)
-		inputPword.send_keys('Dominic')
-		LogIn = self.browser.find_element_by_id('btnPost')
-		LogIn.click()
-		time.sleep(1)
-		self.check_rows_para_sa_list_ng_user('2: Dominic')# for Password5678')
-		
-	def test_check_live_server(self):
-		self.browser.get(self.live_server_url)
-		#self.fail('Finish the test!')
-		'''
-		
-#if __name__=='__main__':
-#	unittest.main(warnings='ignore')
+		self.assertNotIn('Ive been keeping all the letters that I wrote for you Doubtful ScarletHeart #letters', peaBody)
+		self.assertIn('Another sunny day has come and gone away Regretful ScarletHeart #passingby', peaBody)		

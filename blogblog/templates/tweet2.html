@@ -4,20 +4,34 @@
 </head>
 <body style= "text-align:center; background-color:#465966;">
 	<h1 style= "text-shadow: -1px 1px 0 #fff,1px 1px 0 #fff,1px -1px 0 #fff,-1px -1px 0 #fff; color:1DA1F2; margin-top:20px; font-size: 50px">Spill the Twit!</h1>
-	<form method="POST" action="/blogblog/newlist_url">
+	<form method="POST" action="/blogblog/{{yId.id}}/addItem">
 		<label for="name" style="color:white; margin-left: -50px";>Name:</label>
 		<input type='text' id="name" name="name" style="text-align:center; border-radius: 25px; margin-left: 10px"><br><br>
 		<label for="bio" style="color:white; margin-left: -50px";>Bio:</label>
 		<input type='text' id="bio" name="" style="text-align:center; border-radius: 25px; margin-left: 30px"><br><br>
+		<label for="Feeling" style="color:white; margin-left: -50px";>Feeling:</label>
+		<input type='text' id="Feeling" name="Feeling" style="text-align:center; border-radius: 5px;"><br><br>
 		<input type='text' id="Content" name="Content" style="text-align:center; height: 100px; width: 500px; border-radius: 10px;" placeholder="Write your content here."><br><br>
-		<input type='text' id="Codename" name="Cname" style="text-align:center; border-radius: 5px;" placeholder="Enter your codename."><br><br>
+		<input type='text' id="Codename" name="Codename" style="text-align:center; border-radius: 5px;" placeholder="Enter your codename."><br><br>
+		<label for="Description" style="color:white; margin-left: -50px";>Description:</label>
+		<input type='text' id="Description" name="Description" style="text-align:center; border-radius: 5px;"><br><br>
 		<input type='submit' id="btnPost" style="text-align:center; border-radius: 5px;" value="Spill !"/><br><br>
 		<input type='hidden'> 
 		{% csrf_token %}
 		<table id="ContentList" style="color:white; margin: 0 auto;">
-			{% for item in Content %}
+			{% for item in yId.item_set.all %}
+			<tr>
+				<th> Shared Posts </th>
+				<th> Feeling </th>
+				<th> Author </th>
+				<th> Description </th>
+				<th> Date </th>
+			</tr>
 			<tr>
 				<td>{{ forloop.counter }}: {{ item.text }}</td>
+				<td>{{ item.feelId }}</td>
+				<td>{{ item.codeId }}</td>
+				<td>{{ item.descId }}</td>
 			</tr>
 			{% endfor %}
 		</table>

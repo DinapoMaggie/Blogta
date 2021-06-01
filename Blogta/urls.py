@@ -1,10 +1,13 @@
 from django.conf.urls import url
 from blogblog import views
+from django.contrib import admin
 
 urlpatterns = [
 	url(r'^$', views.tweet, name='tweet'),
-	url(r'^blogblog/viewlist_url/$', views.ViewList, name='viewlist'),
+	url(r'^blogblog/(\d+)/$', views.ViewList, name='viewlist'),
 	url(r'^blogblog/newlist_url$', views.NewList, name='newlist'),
+	url(r'^blogblog/(\d+)/addItem$', views.AddList, name='addItem'),
+	url('admin/', admin.site.urls),
 	]
 
 
