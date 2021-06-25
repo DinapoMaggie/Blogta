@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>P&A Korean Blinds</title>
+
+<style>
+* {box-sizing: border-box}
+h1{
+	margin: 0;
+}
+
+/* Full-width input fields */
+ input[type=text], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  font-size: 15px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+a{
+	color: white;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: gray;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 12px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/*Main division for the sign up form */
+.main {
+  border: 10px;
+  border-color: #000000;
+	background-image: url(/static/imgs/bg.jpg);
+	background-blend-mode: screen;
+	background-size: cover;
+	background-position: top center;
+	position: relative;
+	z-index: 1;}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+	<div class="main">
+	<form method="POST" action="/blogblog/newlist_url" style="border:1px solid #ccc">
+	  <div class="container">
+	    <center><h1>Sign Up</h1></center>
+	    <hr>
+
+	    <label for="email"><b>Email</b></label>
+	    <input id="email" type="text" placeholder="Enter Email ddress" name="email" required>
+
+	    <label for="password"><b>Password</b></label>
+	    <input id="password" type="password" placeholder="Enter Password" name="psw" required>
+
+	    <label for="repeat"><b>Repeat Password</b></label>
+	    <input id="repeat" type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+	    <label for="name"><b>Full Name</b></label>
+	    <input id="name" type="text" placeholder="Full Name" name="name" required>
+
+	    <label for="age"><b>Age</b></label>
+	    <input id="age" type="text" placeholder="Age" name="age" required>
+
+	    <label for="address"><b>Complete Address</b></label>
+	    <input id="addess" type="text" name="address" required>
+
+	    <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+	    <div class="clearfix">
+	      <button type="button" class="cancelbtn"><a href="{% url 'login' %}">Cancel</button>
+	      <button type="submit" class="signupbtn"><a href="{% url 'login' %}">Submit</button>
+	    </div>
+	  </div>
+	</form>
+	</div>
+</html>

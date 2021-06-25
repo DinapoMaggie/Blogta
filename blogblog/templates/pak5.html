@@ -1,0 +1,452 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>P&A Korean Blinds</title>
+</head>
+<style>
+	
+	#OrderSlip{
+		background-color: rgba(255,255,255,0.9);
+		border-color: black;
+		border-width: 5px;
+		border-style: solid;
+		border-radius: 25px;
+		justify-content: center;
+		padding: 20px;
+		margin-top: 100px;
+		position: fixed;
+		top: 10px;
+		left: 30px;
+		right: 30px;
+		bottom: 140px;
+		overflow: auto;
+	}
+	p{
+		font-size: 15px;
+	}
+	
+	h2{
+		font-size: 25px;
+		text-align: center;
+	}
+	h3{
+		font-size: 18px;
+	}
+	.name{
+		padding-top: 10px;
+		margin-left: 20px;
+		font-size: 20px;
+	}
+	hr{
+		width: 810px;
+		margin-left: 20px;
+	}
+	#Order{
+		width: 600px;
+		text-align: center;
+	}
+	.Order{
+		margin-left: 240px;
+	}
+	#details{
+		width: 600px;
+		text-align: center;
+	}
+	.details{
+		margin-left: 235px;
+	}
+	#status{
+		width: 600px;
+		text-align: center;
+	}
+	.status{
+		margin-left: 235px;
+	}
+	td, th {
+		border: 1px solid #ddd;
+		padding: 3px;
+	}
+	tr{
+		justify-content: center;
+		
+	}
+	tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+
+	tr:hover {
+		background-color: #ddd;
+	}
+	th {
+		background-color: #04AA6D;
+		color: white;
+		width: 100px;
+	}
+	#contact{
+		position: fixed;
+		left: 550px;
+		top: 270px;
+		font-size: 15px;
+	}
+	input{
+		border-radius: 10px;
+		padding: 5px;
+	}
+	#crud{
+		position: fixed;
+		left: 730px;
+		top: 290px;
+	}
+	#footers{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#footers .footer{
+		flex-direction: column;
+	}
+	#footers h1{
+		margin: 5px;
+		font-size: 20px;
+		text-align: center;
+		color: white;
+		-webkit-text-fill-color: white;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers h1 span{
+		color: transparent;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers .social-icon{
+		display: flex;
+		justify-content: center;
+	}
+	#footers .item{
+		margin-bottom: 1px;
+	}
+	#footers .item img{
+		height: 40px;
+		width: 40px;
+		filter: grayscale(1);
+		transition: .3s ease filter;
+	}
+	#footers .item:hover img{
+		filter: grayscale(0);
+	}
+	#footers p{
+		margin: 5px;
+		color: white;
+		font-size: 10px;
+		text-align: center;
+	}
+	.date{
+		color: white;
+		position: fixed;
+		top: 100px;
+		right: 50px;
+		border-color: black;
+		background-color: gray;
+		border-radius: 10px;
+		padding: 5px;
+	}
+	.brand h1{
+		position: fixed;
+		top: -10px;
+		left: 90px;
+		font-size: 30px;
+		text-transform: uppercase;
+		color:white;
+		-webkit-text-fill-color: White;
+		-webkit-text-stroke-width: .3px;
+		
+	}
+	.brand h1 span{
+		color: white;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: .3px;
+	}
+
+	#header {
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100px;
+	}
+	#header .logo img{
+		position: fixed;
+		left: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px;
+	}
+	#header .header{
+		min-height: 71px;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#header .navi ul{
+		position: fixed;
+		top: 10px;
+		right: 20px;
+		padding: 0 10px;
+		display: block;
+		height: auto;
+		width: fit-content;
+		background-color: transparent;
+	}
+	#header .navi ul li{
+		display: inline-block;
+		padding: 0 10px;
+	}
+	#header .navi ul li a{
+		font-size: 1rem;
+		color: white;
+		text-transform: uppercase;
+	}
+	#header .navi ul li a:hover{
+		color: #04AA6D;
+	}
+	.dropbtn {
+		background-color: gray;
+		border-radius: 10px;
+		color: white;
+		padding: 5px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.dropbtn:hover, .dropbtn:focus {
+		background-color: #2980B9;
+	}
+	.confirm {
+		background-color: gray;
+		border-radius: 10px;
+		color: white;
+		padding: 5px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.confirm:hover, .confirm:focus {
+		background-color: #04AA6D;
+	}
+	.delete {
+		background-color: gray;
+		border-radius: 10px;
+		color: white;
+		padding: 5px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.delete:hover, .delete:focus {
+		background-color: #b30000;
+	}
+
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f1f1f1;
+		min-width: 160px;
+		overflow: auto;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+
+	.dropdown-content a {
+		color: black;
+		font-size: 13px;
+		padding: 7px 5px;
+		text-decoration: none;
+		display: block;
+	}
+
+	.dropdown a:hover {
+		background-color: #ddd;
+	}
+
+	.show {
+		display: block;
+	}
+	a{
+		color: white;
+	}
+	#orderstat1, #orderstat2{
+		display: hidden;
+	}
+	</style>
+<body>
+	<section id="header">
+		<div class="header">
+			<div class="logo">
+				<img src="static/imgs/logo.png" alt="logo">
+			
+				<div class="brand">
+					<h1>P<span>&</span>A <span>K</span>orean <span>B</span>linds</h1>
+				</div>
+				<div class="navi">
+					<ul>
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'mess' %}">Order form</a></li>
+						<li><a href="{% url 'estcost' %}">Estimate Cost</a></li>
+						<li><a href="{% url 'ordslip' %}">Tickets</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="OrderSlip">
+		<div class="date">Date: <script>document.write(new Date().toLocaleDateString());</script></div>
+		<h2>Order Slip</h2>
+		
+			{% for y in Youser %}
+				<div class="name">Client: {{ y.name }}</div>
+			{% endfor %}
+		
+		<hr><br><br>
+
+		<input type='hidden'> 
+		{% csrf_token %}
+		<h3 class="Order">Order Details</h3>
+		<table id="Order">
+			
+			<tr>
+				<th> Type </th>
+				<th> Operation </th>
+				<th> Material </th>
+				<th> Design </th>
+				<th> Color </th>
+			</tr>
+			{% for d in Design %}
+			<tr>
+				<td>{{ d.Type }}</td>
+				<td>{{ d.Operation }}</td>
+				<td>{{ d.Material }}</td>
+				<td>{{ d.Design }}</td>
+				<td>{{ d.Color }}</td>
+			</tr>
+			{% endfor %}
+		</table><br>
+		
+		<h3 class="details">Meet-up Details</h3>
+		<table id="details">
+			<tr>
+				<th> Message </th>
+				<th> Date </th>
+				<th> Time </th>
+				<th> Contact Number </th>
+			</tr>
+			{% for i in Inquiry %}
+			<tr>
+				<td>{{ i.Message }}</td>
+				<td>{{ i.MeetUpDate }}</td>
+				<td>{{ i.Time }}</td>
+				<td>{{ i.contnum }}</td>
+			</tr>
+			{% endfor %}
+		</table><br>
+
+		<h3 class="status">Order Status</h3>
+		<table id="status">
+			<tr>
+				<th> Order Date </th>
+				<th> Delivery Date </th>
+				<th> Status </th>
+			</tr>
+			{% for o in Order %}
+			<tr>
+				<td>{{ o.orderdate }}</td>
+				<td>{{ o.deliverydate }}</td>
+				<td>{{ o.status }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		<div id="orderstat1"></div>
+		<div id="orderstat2"></div>
+
+		<div id="crud">
+			<div class="dropdown">
+				<button onclick="myFunction()" class="dropbtn">Make Change/s</button>
+				<div id="myDropdown" class="dropdown-content">
+					<a href="{% url 'youser' %}">Personal Informations</a>
+					<a href="{% url 'mess' %}">Order Details</a>
+					<a href="{% url 'inq' %}">Meet-up Details</a>
+				</div>
+			</div><br><br>
+			<div class="confirm" type="submit">
+				<a href="{% url 'youser' %}">Confirm</a>
+			</div><br>
+			<div class="delete" type="submit">
+				<a href="{% url 'youser' %}">Delete</a>
+			</div>
+		</div>
+	</section>
+
+
+	<section id="footers">
+		<div class="footer container">
+				<h1><span>D</span>aniel <span>B</span>alaisi</h2>
+				<div class="social-icon">
+					<div class="item">
+						<a href="https://www.facebook.com/danielhahaha14"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://www.instagram.com/danielbalaisi/"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://twitter.com/majicbits"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png"/></a>
+					</div>
+				</div>
+				<p>Copyright © 2021 Maggie Dinapo. All rights reserved.</p>
+			</div>
+	</section>
+	<script>
+/*fro status*/
+		document.getElementById("orderstat1").addEventListener("load", orderstat)
+		function orderstat(){
+			if (document.getElementById('deliverydate').value<document.getElementsByClassName('date').value) 
+			{
+				document.getElementById("status").innerHTML = "Successful Deal"
+			}
+			else[
+				document.getElementById("status").innerHTML = "On Process Deal"
+				]
+		}
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+		function myFunction() {
+			document.getElementById("myDropdown").classList.toggle("show");}
+
+// Close the dropdown if the user clicks outside of it
+		window.onclick = function(event) {
+			if (!event.target.matches('.dropbtn')) {
+    			var dropdowns = document.getElementsByClassName("dropdown-content");
+    			var i;
+    			for (i = 0; i < dropdowns.length; i++) {
+      				var openDropdown = dropdowns[i];
+      				if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      	}}}}
+</script>
+</body>
+</html>

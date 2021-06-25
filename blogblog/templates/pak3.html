@@ -1,0 +1,405 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>P&A Korean Blinds</title>
+</head>
+<style>
+	img{
+		size: cover;
+	}
+	#EstConv{
+		background-color: rgba(255,255,255,0.9);
+		border-color: black;
+		border-width: 5px;
+		border-style: solid;
+		border-radius: 25px;
+		justify-content: center;
+		margin-top: 100px;
+		position: fixed;
+		top: 10px;
+		left: 30px;
+		right: 30px;
+		bottom: 140px;
+	}
+	.name{
+		padding-top: 10px;
+		margin-left: 20px;
+		font-size: 20px;
+	}
+	hr{
+		width: 850px;
+		margin-left: 20px;
+	}
+	.instruct{
+		text-align: center;
+	}
+	.remember{
+		text-align: center;
+	}
+	#Convert{
+		margin-top: 25px;
+		margin-left: 50px;
+		font-size: 15px;
+	}
+	#result1{
+		margin-left: 30px;
+	}
+	#result2{
+		margin-left: 30px;
+	}
+	#Estimate{
+		position: fixed;
+		top: 275px;
+		left: 450px;
+	}
+	#size{
+		margin-left: 25px;
+		background-color: gray;
+		color: white;
+		border-radius: 10px;
+		border-color: black;
+		padding: 5px;
+	}
+	#Est{
+		border-radius: 10px;
+		border-style: solid;
+		border-width: 2px;
+		border-color: black;
+		padding: 10px;
+		width: 200px;
+	}
+	#bttn{
+		align-content: center;
+	}
+	.pak4{
+		position: fixed;
+		bottom: 150px;
+		right: 60px;
+		text-align:center;
+		border-radius: 25px;
+		width: 100px;
+		background-color: gray;
+		padding: 5px 0;
+	}
+	.pak4 a{
+		color: white;
+		font-size: 15px;
+		align-content: center;
+	}
+	.pak4:hover {
+		background-color: #b30000;
+	}
+	#footers{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#footers .footer{
+		flex-direction: column;
+	}
+	#footers h1{
+		margin: 5px;
+		font-size: 20px;
+		text-align: center;
+		color: white;
+		-webkit-text-fill-color: white;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers h1 span{
+		color: transparent;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers .social-icon{
+		display: flex;
+		justify-content: center;
+	}
+	#footers .item{
+		margin-bottom: 1px;
+	}
+	#footers .item img{
+		height: 40px;
+		width: 40px;
+		filter: grayscale(1);
+		transition: .3s ease filter;
+	}
+	#footers .item:hover img{
+		filter: grayscale(0);
+	}
+	#footers p{
+		margin: 5px;
+		color: white;
+		font-size: 10px;
+		text-align: center;
+	}
+	.date{
+		color: white;
+		position: fixed;
+		top: 100px;
+		right: 50px;
+		border-color: black;
+		background-color: gray;
+		border-radius: 10px;
+		padding: 5px;
+	}
+
+	.brand h1{
+		position: fixed;
+		top: -10px;
+		left: 90px;
+		font-size: 30px;
+		text-transform: uppercase;
+		color:white;
+		-webkit-text-fill-color: White;
+		-webkit-text-stroke-width: .3px;
+		
+	}
+	.brand h1 span{
+		color: white;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: .3px;
+	}
+
+	#header {
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100px;
+	}
+	#header .logo img{
+		position: fixed;
+		left: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px;
+	}
+	#header .header{
+		min-height: 71px;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#header .navi ul{
+		position: fixed;
+		top: 10px;
+		right: 20px;
+		padding: 0 10px;
+		display: block;
+		height: auto;
+		width: fit-content;
+		background-color: transparent;
+	}
+	#header .navi ul li{
+		display: inline-block;
+		padding: 0 10px;
+	}
+	#header .navi ul li a{
+		font-size: 1rem;
+		color: white;
+		text-transform: uppercase;
+	}
+	#header .navi ul li a:hover{
+		color: #04AA6D;
+	}
+</style>
+<body>
+<!-- header -->
+	<section id="header">
+		<div class="header">
+			<div class="logo">
+				<img src="static/imgs/logo.png" alt="logo">
+			
+				<div class="brand">
+					<h1>P<span>&</span>A <span>K</span>orean <span>B</span>linds</h1>
+				</div>
+				<div class="navi">
+					<ul>
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'mess' %}">Order form</a></li>
+						<li><a href="{% url 'estcost' %}">Estimate Cost</a></li>
+						<li><a href="{% url 'ordslip' %}">Tickets</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="EstConv">
+		<div class="date">Date: <script>document.write(new Date().toLocaleDateString());</script></div>
+			{% for y in Youser %}
+				<div class="name">Client: {{ y.name }}</div>
+			{% endfor %}
+			<hr>
+			<p class="instruct">You can estimate the cost of your order. Remember that the price that will be shown may change depending on the window blinds' material, type, and design that you chose. This is intended to help you manage your budget.</p>
+			<p class="remember"><strong>Remember!</strong> You should know the height and width of the windows that you want to have your desired blinds.</p>
+			<form id="Convert">
+				Unit:
+				<select id="mySelect">
+				  <option value="1">Cm</option>
+				  <option value="2">Inches</option>
+				  <option value="3">Foot</option>
+				  <option value="4">Meter</option>
+				  <option value="5">Yard</option>
+				  <option value="6">Millimeter</option>
+				</select><br><br>
+				Height: <input type="text" id="height"></div><br><br>
+				Width: <input type="text" id="width"></div><br><br>
+				<button type="button" onclick="convert()">Convert</button><br><br>
+			
+				Converted height: <input type="text" id="result1"><br><br>
+				Converted width: <input type="text" id="result2">
+				</form>
+			<form id="Estimate">
+				<p>Estimated Size of your window blinds:<span id="size">Square Foot</span></p>
+				<input type="button" onClick="multiplyBy()" value="Value in Square Foot"><br><br>
+
+				<div id="Est">
+					<p>From: <span id="lowestAmount"></span> Php</p>
+					<p>Up to: <span id="highestAmount"></span> Php</p><br>
+					<input id="bttn" type="button" onClick="EstAmount()" value="Estimate Amount">
+				</div>
+				<div class="pak4" type="submit">
+					<a href="{% url 'inq' %}">Next</a>
+				</div>
+			</form>
+			
+	</section>
+
+
+	<section id="footers">
+		<div class="footer container">
+				<h1><span>D</span>aniel <span>B</span>alaisi</h2>
+				<div class="social-icon">
+					<div class="item">
+						<a href="https://www.facebook.com/danielhahaha14"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://www.instagram.com/danielbalaisi/"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://twitter.com/majicbits"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png"/></a>
+					</div>
+				</div>
+				<p>Copyright © 2021 Maggie Dinapo. All rights reserved.</p>
+			</div>	</section>
+
+	<script type="text/javascript">
+
+		function convert() {
+		    if(document.getElementById('mySelect').value=="1")
+		    {
+		        var num1=0.0328084;
+		        var num2=document.getElementById('height').value;
+		        var num3=document.getElementById('width').value;
+		        var res1=document.getElementById('result1');
+		        var myResult1=num1*num2;
+		        document.getElementById('result1').value=myResult1;
+		        var res2=document.getElementById('result2');
+		        var myResult2=num1*num3;
+		        document.getElementById('result2').value=myResult2;
+
+
+		    }
+		    else if(document.getElementById('mySelect').value=="2")
+		    {
+		        var num1=0.0833333;
+		        var num2=document.getElementById('height').value;
+		        var num3=document.getElementById('width').value;
+		        var res=document.getElementById('result1');
+		        var myResult1=num1*num2;
+		        document.getElementById('result1').value=myResult1;
+		        var res2=document.getElementById('result2');
+		        var myResult2=num1*num3;
+		        document.getElementById('result2').value=myResult2;
+
+
+		    }
+		    else if(document.getElementById('mySelect').value=="3")
+		    {
+		        var num1=1;
+		        var num2=document.getElementById('height').value;
+		        var num3=document.getElementById('width').value;
+		        var res=document.getElementById('result1');
+		        var myResult1=num1*num2;
+		        document.getElementById('result1').value=myResult1;
+		        var res2=document.getElementById('result2');
+		        var myResult2=num1*num3;
+		        document.getElementById('result2').value=myResult2;
+
+
+		    }
+		    else if(document.getElementById('mySelect').value=="4")
+		    {
+		        var num1=3.28084;
+		        var num2=document.getElementById('height').value;
+		        var num3=document.getElementById('width').value;
+		        var res=document.getElementById('result1');
+		        var myResult1=num1*num2;
+		        document.getElementById('result1').value=myResult1;
+		        var res2=document.getElementById('result2');
+		        var myResult2=num1*num3;
+		        document.getElementById('result2').value=myResult2;
+
+
+		    }
+		    else if(document.getElementById('mySelect').value=="5")
+		    {
+		        var num1=3;
+		        var num2=document.getElementById('height').value;
+		        var num3=document.getElementById('width').value;
+		        var res=document.getElementById('result1');
+		        var myResult1=num1*num2;
+		        document.getElementById('result1').value=myResult1;
+		        var res2=document.getElementById('result2');
+		        var myResult2=num1*num3;
+		        document.getElementById('result2').value=myResult2;
+
+
+		    }
+		    else if(document.getElementById('mySelect').value=="6")
+		    {
+		        var num1=0.00328084;
+		        var num2=document.getElementById('height').value;
+		        var num3=document.getElementById('width').value;
+		        var res=document.getElementById('result1');
+		        var myResult1=num1*num2;
+		        document.getElementById('result1').value=myResult1;
+		        var res2=document.getElementById('result2');
+		        var myResult2=num1*num3;
+		        document.getElementById('result2').value=myResult2;
+
+
+		    }
+		}
+
+
+
+		function multiplyBy()
+		{
+			num1 = document.getElementById("result1").value;
+			num2 = document.getElementById("result2").value;
+			num3 = num1 * num2;
+			num4 = num3.toFixed(2);
+			document.getElementById("size").innerHTML = num4;
+		}
+		function EstAmount()
+		{
+			num1 = document.getElementById("result1").value;
+			num2 = document.getElementById("result2").value;
+			num3 = num1 * num2;
+			num4 = num3.toFixed(2);
+			document.getElementById("lowestAmount").innerHTML = num4* 70;
+			num3 = num1 * num2;
+			num4 = num3.toFixed(2);
+			document.getElementById("highestAmount").innerHTML = num4 * 250;
+		}
+
+	</script>
+</body>
+</html>

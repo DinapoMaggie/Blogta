@@ -1,0 +1,266 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>P&A Korean Blinds</title>
+</head>
+<style>
+	#Inquiry{
+		background-color: rgba(255,255,255,0.9);
+		border-color: black;
+		border-width: 5px;
+		border-style: solid;
+		border-radius: 25px;
+		justify-content: center;
+		margin-top: 100px;
+		position: fixed;
+		top: 10px;
+		left: 30px;
+		right: 30px;
+		bottom: 140px;
+	}
+	.name{
+		padding-top: 20px;
+		margin-left: 20px;
+		font-size: 20px;
+	}
+	hr{
+		width: 850px;
+		margin-left: 20px;
+	}
+	.pak5{
+		position: fixed;
+		bottom: 150px;
+		right: 60px;
+		text-align:center;
+		border-radius: 25px;
+		width: 100px;
+		background-color: gray;
+		padding: 5px 0;
+	}
+	.pak5 a{
+		color: white;
+		font-size: 15px;
+		align-content: center;
+	}
+	.pak5:hover {
+		background-color: #b30000;
+	}
+	#label{
+		position: fixed;
+		top:180px;
+		left: 245px;
+		font-size: 15px;
+	}
+	#Message{
+		position: fixed;
+		top: 200px;
+		margin-left: 50px;
+		width: 400px;
+		height: 250px;
+	}
+	#send{
+		position: fixed;
+		left: 275px;
+		bottom: 180px;
+		padding: 5px;
+		border-radius: 10px;
+	}
+	#send:hover{
+		background-color: #b30000;
+		color: white;
+	}
+	#contact{
+		position: fixed;
+		left: 550px;
+		top: 260px;
+		font-size: 15px;
+	}
+	input{
+		border-radius: 10px;
+		padding: 5px;
+	}
+	#footers{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#footers .footer{
+		flex-direction: column;
+	}
+	#footers h1{
+		margin: 5px;
+		font-size: 20px;
+		text-align: center;
+		color: white;
+		-webkit-text-fill-color: white;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers h1 span{
+		color: transparent;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers .social-icon{
+		display: flex;
+		justify-content: center;
+	}
+	#footers .item{
+		margin-bottom: 1px;
+	}
+	#footers .item img{
+		height: 40px;
+		width: 40px;
+		filter: grayscale(1);
+		transition: .3s ease filter;
+	}
+	#footers .item:hover img{
+		filter: grayscale(0);
+	}
+	#footers p{
+		margin: 5px;
+		color: white;
+		font-size: 10px;
+		text-align: center;
+	}
+	.date{
+		color: white;
+		position: fixed;
+		top: 100px;
+		right: 50px;
+		border-color: black;
+		background-color: gray;
+		border-radius: 10px;
+		padding: 5px;
+	}
+	.brand h1{
+		position: fixed;
+		top: -10px;
+		left: 90px;
+		font-size: 30px;
+		text-transform: uppercase;
+		color:white;
+		-webkit-text-fill-color: White;
+		-webkit-text-stroke-width: .3px;
+		
+	}
+	.brand h1 span{
+		color: white;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: .3px;
+	}
+
+	#header {
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100px;
+	}
+	#header .logo img{
+		position: fixed;
+		left: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px;
+	}
+	#header .header{
+		min-height: 71px;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#header .navi ul{
+		position: fixed;
+		top: 10px;
+		right: 20px;
+		padding: 0 10px;
+		display: block;
+		height: auto;
+		width: fit-content;
+		background-color: transparent;
+	}
+	#header .navi ul li{
+		display: inline-block;
+		padding: 0 10px;
+	}
+	#header .navi ul li a{
+		font-size: 1rem;
+		color: white;
+		text-transform: uppercase;
+	}
+	#header .navi ul li a:hover{
+		color: #04AA6D;
+	}
+
+</style>
+<body>
+	<section id="header">
+		<div class="header">
+			<div class="logo">
+				<img src="static/imgs/logo.png" alt="logo">
+			
+				<div class="brand">
+					<h1>P<span>&</span>A <span>K</span>orean <span>B</span>linds</h1>
+				</div>
+				<div class="navi">
+					<ul>
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'mess' %}">Order form</a></li>
+						<li><a href="{% url 'estcost' %}">Estimate Cost</a></li>
+						<li><a href="{% url 'ordslip' %}">Tickets</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="Inquiry">
+		<div class="date">Date: <script>document.write(new Date().toLocaleDateString());</script></div>
+			{% for y in Youser %}
+		<div class="name">Client: {{ y.name }}</div>
+			{% endfor %}
+		<hr><br><br>
+		<form class="inquiry" method="POST" action="{% url 'inq' %">
+			<label id="label" for="Message">~ Message ~</label><br><br>
+			<textarea type="text" id="Message" value="Ask me anything."></textarea><br><br>
+			<input id="send" type="submit" value="Send">
+		</form>
+		<form id="contact">
+			<label for="MeetUpDate">Meet-up Date: </label>
+			<input type="date" id="MeetUpDate" required><br><br>
+			<label for="Time">Available Time: </label>
+			<input type="text" id="Time" placeholder="ex. 09:00 AM" required><br><br>
+			<label for="contnum">Contact #: </label>
+			<input type="text" id="contnum" placeholder="ex. 09000000000" required>
+			<div class="pak5" type="submit">
+				<a href="{% url 'ordslip' %}">Next</a>
+			</div>
+		</form>
+		
+	</section>
+
+
+	<section id="footers">
+		<div class="footer container">
+				<h1><span>D</span>aniel <span>B</span>alaisi</h2>
+				<div class="social-icon">
+					<div class="item">
+						<a href="https://www.facebook.com/danielhahaha14"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://www.instagram.com/danielbalaisi/"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://twitter.com/majicbits"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png"/></a>
+					</div>
+				</div>
+				<p>Copyright © 2021 Maggie Dinapo. All rights reserved.</p>
+			</div>
+	</section>
+</body>
+</html>

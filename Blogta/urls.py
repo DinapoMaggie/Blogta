@@ -3,10 +3,18 @@ from blogblog import views
 from django.contrib import admin
 
 urlpatterns = [
-	url(r'^$', views.tweet, name='tweet'),
-	url(r'^blogblog/(\d+)/$', views.ViewList, name='viewlist'),
-	url(r'^blogblog/newlist_url$', views.NewList, name='newlist'),
-	url(r'^blogblog/(\d+)/addItem$', views.AddList, name='addItem'),
+	url(r'^$', views.LogIn, name='login'),
+    url(r'^blogblog/youser$', views.Youser, name='youser'),
+    url(r'^blogblog/estcost$', views.Estimate, name='estcost'),
+    url(r'^blogblog/ordslip$', views.OrderSlip, name='ordslip'),
+    url(r'^blogblog/mess$', views.Design, name='mess'),
+    url(r'^blogblog/inq$', views.Inquiry, name='inq'),
+    url(r'^blogblog/profile$', views.Profile, name='profile'),
+    # url(r'^blogblog/que/$', views.addquery, name='que'),
+    # url(r'^blogblog/message/$', views.message, name='message'),
+	# url(r'^blogblog/(\d+)/$', views.OrderDetails, name='orderdetails'),
+	# url(r'^blogblog/newlist_url$', views.NewOrder, name='neworder'),
+	# url(r'^blogblog/(\d+)/addItem$', views.AddOrder, name='addorder'),
 	url('admin/', admin.site.urls),
 	]
 

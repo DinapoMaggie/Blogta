@@ -1,0 +1,246 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>P&A Korean Blinds</title>
+</head>
+<style>
+	
+	#profile{
+		margin-top: 120px;
+	}
+	
+	#footers{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#footers .footer{
+		flex-direction: column;
+	}
+	#footers h1{
+		margin: 5px;
+		font-size: 20px;
+		text-align: center;
+		color: white;
+		-webkit-text-fill-color: white;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers h1 span{
+		color: transparent;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: 0;
+	}
+	#footers .social-icon{
+		display: flex;
+		justify-content: center;
+	}
+	#footers .item{
+		margin-bottom: 1px;
+	}
+	#footers .item img{
+		height: 40px;
+		width: 40px;
+		filter: grayscale(1);
+		transition: .3s ease filter;
+	}
+	#footers .item:hover img{
+		filter: grayscale(0);
+	}
+	#footers p{
+		margin: 5px;
+		color: white;
+		font-size: 10px;
+		text-align: center;
+	}
+	.date{
+		color: white;
+		position: fixed;
+		top: 100px;
+		right: 50px;
+		border-color: black;
+		background-color: gray;
+		border-radius: 10px;
+		padding: 5px;
+	}
+	.brand h1{
+		position: fixed;
+		top: -10px;
+		left: 90px;
+		font-size: 30px;
+		text-transform: uppercase;
+		color:white;
+		-webkit-text-fill-color: White;
+		-webkit-text-stroke-width: .3px;
+		
+	}
+	.brand h1 span{
+		color: white;
+		-webkit-text-fill-color: #04AA6D;
+		-webkit-text-stroke-width: .3px;
+	}
+
+	#header {
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100vw;
+		height: 100px;
+	}
+	#header .logo img{
+		position: fixed;
+		left: 10px;
+		width: 50px;
+		height: 50px;
+		margin: 10px;
+	}
+	#header .header{
+		min-height: 71px;
+		background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+	}
+	#header .navi ul{
+		position: fixed;
+		top: 10px;
+		right: 20px;
+		padding: 0 10px;
+		display: block;
+		height: auto;
+		width: fit-content;
+		background-color: transparent;
+	}
+	#header .navi ul li{
+		display: inline-block;
+		padding: 0 10px;
+	}
+	#header .navi ul li a{
+		font-size: 1rem;
+		color: white;
+		text-transform: uppercase;
+	}
+	#header .navi ul li a:hover{
+		color: #04AA6D;
+	}
+
+
+	#profile{
+		background-color: rgba(255,255,255,0.9);
+		border-color: black;
+		border-width: 5px;
+		border-style: solid;
+		border-radius: 25px;
+		padding: 20px;
+		margin-top: 100px;
+		position: fixed;
+		top: 10px;
+		left: 30px;
+		right: 30px;
+		bottom: 140px;
+		overflow: auto;
+	}
+	td, th {
+		border: 1px solid #ddd;
+		padding: 3px;
+		width: 200px;
+		justify-content: center;
+	}
+
+	tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+
+	tr:hover {
+		background-color: #ddd;
+	}
+	th {
+		background-color: #04AA6D;
+		color: white;
+		margin-top: 20px;
+	}
+</style>
+<body>
+<!-- header -->
+	<section id="header">
+		<div class="header container">
+			<div class="navi">
+				<div class="logo">
+					<img src="/static/imgs/logo.icon" alt="logo">
+				</div>
+				<div class="brand">
+					<h1>P<span>&</span>A <span>K</span>orean <span>B</span>linds</h1></a>
+				</div>
+				<div class="nav-list">
+					<div class="hamburger"><div class="bar"></div></div>
+					<ul>
+						<li><a href="{% url 'profile' %}">Profile</a></li>
+						<li><a href="{% url 'mess' %}">Order form</a></li>
+						<li><a href="{% url 'estcost' %}">Estimate Cost</a></li>
+						<li><a href="{% url 'ordslip' %}">Tickets</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="profile">
+		<div class="date">Date: <script>document.write(new Date().toLocaleDateString());</script></div>
+		<input type='hidden'> 
+		{% csrf_token %}
+		<h3 class="profile">Your Profile</h3>
+		<hr><br><br>
+		<table id="details">
+			
+			<tr>
+				<th> Name </th>
+				<th> Age </th>
+				<th> Complete Address </th>
+			</tr>
+			{% for p in Profile %}
+			<tr>
+				<td>{{ p.name }}</td>
+				<td>{{ p.age }}</td>
+				<td>{{ p.address }}</td>
+			</tr><br><br>
+			{% endfor %}
+
+
+			<tr>
+				<th> Email </th>
+				<th> Password </th>
+			</tr>
+			{% for p in Profile %}
+			<tr>
+				<td>{{ p.email }}</td>
+				<td>{{ p.password }}</td>
+			</tr>
+			{% endfor %}
+
+
+		</table><br>
+
+		
+	</section>
+	<section id="footers">
+		<div class="footer container">
+				<h1><span>D</span>aniel <span>B</span>alaisi</h2>
+				<div class="social-icon">
+					<div class="item">
+						<a href="https://www.facebook.com/danielhahaha14"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://www.instagram.com/danielbalaisi/"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png"/></a>
+					</div>
+					<div class="item">
+						<a href="https://twitter.com/majicbits"><img src="https://img.icons8.com/bubbles/100/000000/twitter.png"/></a>
+					</div>
+				</div>
+				<p>Copyright © 2021 Maggie Dinapo. All rights reserved.</p>
+		</div>
+	</section>
+</body>
+</html>
